@@ -1,12 +1,13 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyDZIAVnBvB-GHlaDDO2GbOFjQhVvleb344",
-  authDomain: "database2023test.firebaseapp.com",
-  projectId: "database2023test",
-  storageBucket: "database2023test.appspot.com",
-  messagingSenderId: "352598568614",
-  appId: "1:352598568614:web:b1acd2e65514f8050f8e67",
-  measurementId: "G-6EF9ZJX352"
-}; 
+  apiKey: "AIzaSyCrMcWgqWW57pQVjelCDkR0Lv7oSzEGwSA",
+  authDomain: "database225-311d9.firebaseapp.com",
+  projectId: "database225-311d9",
+  storageBucket: "database225-311d9.appspot.com",
+  messagingSenderId: "255793251648",
+  appId: "1:255793251648:web:d5d8ba983e853e576466a5",
+  measurementId: "G-E8K1CEKPTX"
+};
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -15,8 +16,8 @@ $('#Login').submit(function (e) {
   e.preventDefault();
   // get the user name and password from form
   // You need to change this.
-  var email = 'yilianz4@gmail.com';
-  var password = 'ddsgagafda';
+  var email = 'dandrel@usca.edu';
+  var password = 'Carlos12';
 
   firebase
     .auth()
@@ -44,4 +45,9 @@ $('#Login').submit(function (e) {
     });
 });
 
-// add  a google login choice here 
+// add  a google login choice here
+$('googele').click(function(){
+  var provider = new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth()signInWithEmailAndPassword(provider).then();
+})

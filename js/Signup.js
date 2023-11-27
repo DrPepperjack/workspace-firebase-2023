@@ -1,5 +1,11 @@
 var firebaseConfig = {
-
+  apiKey: "AIzaSyCrMcWgqWW57pQVjelCDkR0Lv7oSzEGwSA",
+  authDomain: "database225-311d9.firebaseapp.com",
+  projectId: "database225-311d9",
+  storageBucket: "database225-311d9.appspot.com",
+  messagingSenderId: "255793251648",
+  appId: "1:255793251648:web:d5d8ba983e853e576466a5",
+  measurementId: "G-E8K1CEKPTX"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
