@@ -15,17 +15,23 @@ $("#signup-form").submit(function(e) {
   e.preventDefault();
   // get the username(email) and password from the form
   // change the following code
-  //var email = ;
-  //var password = ;
+  var username = $('input[name="fullname"]').val();
+  var email = $('input[name="email"]').val();
+  var password = "";
+  var cpassword = "";
+console.log(username, email, password, cpassword);
 
   // create a user with email address and password
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
-    .then(user => {
+    .then(result) => {
       // Signed in
-      // ...
-      console.log("You are signed up");
+      let user = result.user;
+      user.updateProfile({
+        displayName: username
+      });
+      console.log(username, "You are signed up");
       window.location.href = "Login.html";
       
     })
@@ -35,4 +41,4 @@ $("#signup-form").submit(function(e) {
       console.log(error.code);
       console.log(errorMessage);
     });
-});
+
