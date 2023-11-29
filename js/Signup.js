@@ -11,7 +11,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // save the data
-$("#signup-form").submit(function(e) {
+$("#signup-form").submit(function (e) {
   e.preventDefault();
   // get the username(email) and password from the form
   // change the following code
@@ -19,26 +19,41 @@ $("#signup-form").submit(function(e) {
   var email = $('input[name="email"]').val();
   var password = "";
   var cpassword = "";
-console.log(username, email, password, cpassword);
+  console.log(username, email, password, cpassword);
 
   // create a user with email address and password
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
-    .then(result) => {
+    .then((result) => {
       // Signed in
       let user = result.user;
       user.updateProfile({
         displayName: username
-      });
-      console.log(username, "You are signed up");
-      window.location.href = "Login.html";
-      
-    })
-    .catch(error => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(error.code);
-      console.log(errorMessage);
-    });
+      }).then(() => {
+        ;
+        console.log(username, "You are signed up");
+        console.log()
+        window.location.href = "Login.html";
 
+        var date = "Wed 29, 2023 07:28:00 GMT";
+        var userinformation = {
+          "username": username.displayName,
+          "email": emailaddress,
+          "signupDate": date,
+        };
+
+        {
+          var db = firebase.firestore();
+          db.collection("usertable").doc(user.displayName).set(userinformation);
+          console.log(usertable, "Document successfully written!");
+        };
+      })
+        .catch(error => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log(error.code);
+          console.log(errorMessage);
+        });
+    });
+});
