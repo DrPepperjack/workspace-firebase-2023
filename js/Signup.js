@@ -19,7 +19,7 @@ $("#signup-form").submit(function (e) {
   var email = $('input[name="email"]').val();
   var password = "";
   var confirmpassword = "";
-  console.log(username, email, password, cpassword);
+  console.log(username, email, password, confirmpassword);
 
   // create a user with email address and password
   firebase
