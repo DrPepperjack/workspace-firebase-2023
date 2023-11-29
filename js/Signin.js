@@ -45,12 +45,14 @@ $('#Login').submit(function (e) {
     });
 });
 
+document.getElementById('googleSignIn').addEventListener('click', GoogleLogin);
+
 // add  a google login choice here
 $('#google').click(function () {
   var provider = new firebase.auth.GoogleAuthProvider();})
 
   firebase.auth()
-  .signInWithPopup('provider')
+  .signInWithPopup(provider)
   .then((result) => {
     /** @type {firebase.auth.OAuthCredential} */
     var credential = result.credential;
