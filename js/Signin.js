@@ -46,8 +46,26 @@ $('#Login').submit(function (e) {
 });
 
 // add  a google login choice here
-$('googele').click(function(){
+$('googele').click(function () {
   var provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth()signInWithEmailAndPassword(provider).then();
 })
+
+firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    /** @type {firebase.auth.OAuthCredential} */
+    var user = result.user;
+    console.log("Sign in through google", user);
+
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
