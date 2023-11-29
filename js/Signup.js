@@ -18,7 +18,7 @@ $("#signup-form").submit(function (e) {
   var username = $('input[name="fullname"]').val();
   var email = $('input[name="email"]').val();
   var password = "";
-  var cpassword = "";
+  var confirmpassword = "";
   console.log(username, email, password, cpassword);
 
   // create a user with email address and password
