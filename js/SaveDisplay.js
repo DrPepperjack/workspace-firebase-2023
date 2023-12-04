@@ -22,6 +22,11 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     currentuser = user.displayName;
     currentemail = user.email;
+    console.log("User Signed In")
+  }
+  else {
+    console.log("User Signed Out")
+    window.location.href = "Login.html";
   }
 });
 

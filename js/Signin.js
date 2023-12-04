@@ -7,20 +7,20 @@ const firebaseConfig = {
   appId: "1:255793251648:web:d5d8ba983e853e576466a5",
   measurementId: "G-E8K1CEKPTX",
 };
-console.log("firebase loaded"),
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-// Firebase Auth
-const auth = firebase.auth();
 
 // save the data
 $('#Login').submit(function (e) {
   e.preventDefault();
   // get the user name and password from form
   // You need to change this.
-  var email = 'dandrel@usca.edu';
-  var password = 'Carlos12';
+  var email = $('#login').val();
+  var password = $("#pwd").val();
+
+  // var email = "dandrel@usca.edu"
+  // var password = "Carlos12"
 
   firebase
     .auth()
@@ -38,7 +38,7 @@ $('#Login').submit(function (e) {
         photoUrl = user.photoURL;
         emailVerified = user.emailVerified;
         console.log(name, email, emailVerified);
-        window.location.href = 'Surveyresult.html';
+      window.location.href = 'Surveyresult.html';
       }
     })
     .catch((error) => {
@@ -49,17 +49,15 @@ $('#Login').submit(function (e) {
     });
 });
 
-document.getElementById('googleSignIn').addEventListener('click', googleSignInBtn);
-
-// add  a google login choice here
-$('#googleSignInBtn').click(function(){
+$('#google').click(function(){
   var provider = new firebase.auth.GoogleAuthProvider();
-
+  
   firebase.auth()
   .signInWithPopup(provider)
   .then((result) => {
     // The signed-in user info.
     var user = result.user;
+    console.log("sign in through google", user);
 
   }).catch((error) => {
     // Handle Errors here.
@@ -69,6 +67,7 @@ $('#googleSignInBtn').click(function(){
     var email = error.email;
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
+    // ...
   });
 
 });

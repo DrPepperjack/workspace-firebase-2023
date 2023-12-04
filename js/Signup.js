@@ -8,6 +8,7 @@ var firebaseConfig = {
   measurementId: "G-E8K1CEKPTX"
 };
 // Initialize Firebase
+console.log(firebaseConfig)
 firebase.initializeApp(firebaseConfig);
 
 // save the data
@@ -21,12 +22,14 @@ $("#signup-form").submit(function (e) {
   var confirmpassword = $('input[name="confirmpassword"]').val();
   console.log(username, email, password, confirmpassword);
 
-  // create a user with email address and password
+  // check if user with email address and password
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((result) => {
+      
       // Signed in
+
       let user = result.user;
       user.updateProfile({
         displayName: username
@@ -43,17 +46,18 @@ $("#signup-form").submit(function (e) {
           "signupDate": date,
         };
 
-        {
           var db = firebase.firestore();
           db.collection("usertable").doc(user.displayName).set(userinformation);
-          console.log(usertable, "Document successfully written!");
-        };
-      })
-        .catch(error => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          console.log(error.code);
-          console.log(errorMessage);
+          console.log("information stored to firestore")
         });
-    });
+  
+  
+        window.location.href = "Login.html";
+      })
+      .catch(error => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
 });
