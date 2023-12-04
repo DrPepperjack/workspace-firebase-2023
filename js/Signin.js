@@ -5,11 +5,14 @@ const firebaseConfig = {
   storageBucket: "database225-311d9.appspot.com",
   messagingSenderId: "255793251648",
   appId: "1:255793251648:web:d5d8ba983e853e576466a5",
-  measurementId: "G-E8K1CEKPTX"
+  measurementId: "G-E8K1CEKPTX",
 };
+console.log("firebase loaded"),
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+// Firebase Auth
+const auth = firebase.auth();
 
 // save the data
 $('#Login').submit(function (e) {
@@ -35,6 +38,7 @@ $('#Login').submit(function (e) {
         photoUrl = user.photoURL;
         emailVerified = user.emailVerified;
         console.log(name, email, emailVerified);
+        window.location.href = 'Surveyresult.html';
       }
     })
     .catch((error) => {
@@ -45,10 +49,10 @@ $('#Login').submit(function (e) {
     });
 });
 
-// document.getElementById('googleSignIn').addEventListener('click', GoogleLogin);
+document.getElementById('googleSignIn').addEventListener('click', googleSignInBtn);
 
 // add  a google login choice here
-$('#google').click(function(){
+$('#googleSignInBtn').click(function(){
   var provider = new firebase.auth.GoogleAuthProvider();
 
   firebase.auth()
@@ -56,7 +60,6 @@ $('#google').click(function(){
   .then((result) => {
     // The signed-in user info.
     var user = result.user;
-    console.log("sign in through google", user);
 
   }).catch((error) => {
     // Handle Errors here.
@@ -66,7 +69,6 @@ $('#google').click(function(){
     var email = error.email;
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
-    // ...
   });
 
 });
