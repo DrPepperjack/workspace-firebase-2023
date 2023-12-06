@@ -30,6 +30,11 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 });
 
+// Submit the form
+$("#submit").click(function() {
+  firebase.auth().submit().then(() => {;
+  var data = $(".sampleSurvey").serializeArray();
+});
 // sign out code
 $("#signout").click(function() {
   firebase.auth().signOut().then(() => {
@@ -43,9 +48,8 @@ $("#signout").click(function() {
 // save the data
 $(".sampleSurvey input[type='submit']").click(function (e) {
   e.preventDefault();
-
-
   // get the value of the form using serializeArray method
+  var data = $(".sampleSurvey").serializeArray();
 });
 
   // update the result in table
